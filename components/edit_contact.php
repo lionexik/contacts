@@ -2,7 +2,7 @@
 
 include '../database.php';
 
-$contact_id = $_GET['contact_id'];
+$contact_id = $_GET['id'];
 
 $name = $_POST['name'];
 $surname = $_POST['surname'];
@@ -10,7 +10,8 @@ $number = $_POST['number'];
 $email = $_POST['email'];
 $note = $_POST['note'];
 
-if(isset($contact_id) $$ isset($name) && isset($surname) && isset($email)) {
+
+if(isset($contact_id) && isset($name) && isset($surname) && isset($email)) {
 
 	$stmt = $mysqli->prepare("UPDATE Contact SET name = ?, surname = ?, `number` = ?, email = ?, note = ? WHERE id = ?");
 
@@ -19,6 +20,8 @@ if(isset($contact_id) $$ isset($name) && isset($surname) && isset($email)) {
 	$stmt->execute();
 
 	$stmt->close();
+
+
 
 }
 

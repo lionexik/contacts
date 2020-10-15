@@ -46,16 +46,16 @@ echo $mysqli->error;
 
 
 
-    <form action="/components/edit_contact.php?id=<?php echo "id=" . $contact->id; ?>" action="post">
-    	<input type="text" name="name" id="name" placeholder="First Name" value="<?php echo $contact->name; ?>">
-    	<input type="text" name="surname" id="surname" placeholder="Surame" value="<?php echo $contact->surname; ?>">
-    	<input type="text" name="number" id="number" placeholder="Phone number" value="<?php echo $contact->number; ?>">
-    	<input type="text" name="email" id="email" placeholder="Email" value="<?php echo $contact->email; ?>">
-    	<input type="text" name="note" id="note" placeholder="Note" value="<?php echo $contact->note; ?>">
+    <form action="/components/edit_contact.php?id=<?php echo $contact->id; ?>" method="post">
+    	<input type="text" name="name" id="name" placeholder="First Name" value="<?php echo htmlspecialchars($contact->name, ENT_QUOTES); ?>">
+    	<input type="text" name="surname" id="surname" placeholder="Surame" value="<?php echo htmlspecialchars($contact->surname, ENT_QUOTES); ?>">
+    	<input type="text" name="number" id="number" placeholder="Phone number" value="<?php echo htmlspecialchars($contact->number, ENT_QUOTES); ?>">
+    	<input type="text" name="email" id="email" placeholder="Email" value="<?php echo htmlspecialchars($contact->email, ENT_QUOTES); ?>">
+    	<input type="text" name="note" id="note" placeholder="Note" value="<?php echo htmlspecialchars($contact->note, ENT_QUOTES); ?>">
     	<input type="submit" class="btn btn-primary" value="Save">
     </form>
 
-    <a href="/components/delete_contact.php?id=<?php echo "id=" . $contact->id; ?>" class="btn btn-danger">Delete</a>
+    <a href="/components/delete_contact.php?id=<?php echo $contact->id; ?>" class="btn btn-danger">Delete</a>
 
 <?php
 	}

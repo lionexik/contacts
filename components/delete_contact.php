@@ -2,10 +2,16 @@
 
 include '../database.php';
 
-$contact_id = $_GET['contact_id'];
+$contact_id = $_GET['id'];
 
-$sql = "DELETE FROM Contact WHERE `id` = $contact_id";
-$res = $mysqli->query($sql);
+if(is_numeric($contact_id)) {
 
+	$stmt = $mysqli->prepare("DELETE FROM `Contact` WHERE `id` = ?");
+	$stmt->bind_param('i', $contact_id);
+
+	$stmt->execute();
+	$stmt->close();
+
+}
 
 header("Location:/");

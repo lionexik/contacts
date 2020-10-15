@@ -46,11 +46,11 @@
 ?>
           <tr>
             <th scope="row"><?php echo ++$i; ?></th>
-            <td><?php echo $contact->name . " " . $contact->surname; ?></td>
-            <td><?php echo $contact->number; ?></td>
-            <td><?php echo $contact->email; ?></td>
-            <td><?php echo $contact->note; ?></td>
-            <td><a href="/<?php echo $contact->url; ?>" class="btn btn-primary">Edit</a><a href="/components/delete_contact.php?id=<?php echo "id=" . $contact->id; ?>" class="btn btn-danger">Delete</a></td>
+            <td><?php echo htmlspecialchars($contact->name) . " " . htmlspecialchars($contact->surname); ?></td>
+            <td><?php echo htmlspecialchars($contact->number); ?></td>
+            <td><?php echo htmlspecialchars($contact->email); ?></td>
+            <td><?php echo htmlspecialchars($contact->note); ?></td>
+            <td><a href="/<?php echo $contact->url; ?>" class="btn btn-primary">Edit</a><a href="/components/delete_contact.php?id=<?php echo $contact->id; ?>" class="btn btn-danger">Delete</a></td>
           </tr>
 
 <?php
