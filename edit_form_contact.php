@@ -47,11 +47,11 @@ echo $mysqli->error;
 
 
     <form action="/components/edit_contact.php?id=<?php echo "id=" . $contact->id; ?>" action="post">
-    	<input type="text" name="name" id="name" value="<?php echo $contact->name; ?>">
-    	<input type="text" name="surname" id="surname" value="<?php echo $contact->surname; ?>">
-    	<input type="text" name="number" id="number" value="<?php echo $contact->number; ?>">
-    	<input type="text" name="email" id="email" value="<?php echo $contact->email; ?>">
-    	<input type="text" name="note" id="note" value="<?php echo $contact->note; ?>">
+    	<input type="text" name="name" id="name" placeholder="First Name" value="<?php echo $contact->name; ?>">
+    	<input type="text" name="surname" id="surname" placeholder="Surame" value="<?php echo $contact->surname; ?>">
+    	<input type="text" name="number" id="number" placeholder="Phone number" value="<?php echo $contact->number; ?>">
+    	<input type="text" name="email" id="email" placeholder="Email" value="<?php echo $contact->email; ?>">
+    	<input type="text" name="note" id="note" placeholder="Note" value="<?php echo $contact->note; ?>">
     	<input type="submit" class="btn btn-primary" value="Save">
     </form>
 
