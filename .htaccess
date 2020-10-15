@@ -1,11 +1,4 @@
-# htaccess rules for subdomains and aliases
-# to create new subdomain, create a folder www/subdom/(subdomain name)
-# to create web for alias, create a folder www/domains/(whole domain name)
 
-# htaccess pravidla pro subdomeny a samostatne weby aliasu
-# pro vytvoreni subdomeny vytvorte adresar www/subdom/(nazev subdomeny)
-# pro vytvoreni webu pro alias vytvorte adresar www/domains/(cely domenovy nazev)
-# dalsi info a priklady: http://kb.wedos.com/r/32/webhosting-htaccess.html
 
 RewriteEngine On
 
@@ -31,3 +24,7 @@ RewriteRule ^domains/[^/]+/(.+[^/])$ /$1/ [R]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^subdom/[^/]+/(.+[^/])$ /$1/ [R]
 
+# nice url for editing contact
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)$ /edit_form_contact.php?id=$1 [L]
