@@ -50,7 +50,7 @@
             <td><?php echo $contact->number; ?></td>
             <td><?php echo $contact->email; ?></td>
             <td><?php echo $contact->note; ?></td>
-            <td><a href="/<?php echo $contact->url; ?>" class="btn btn-primary">Edit</a></td>
+            <td><a href="/<?php echo $contact->url; ?>" class="btn btn-primary">Edit</a><a href="/components/delete_contact.php?id=<?php echo "id=" . $contact->id; ?>" class="btn btn-danger">Delete</a></td>
           </tr>
 
 <?php
