@@ -29,11 +29,12 @@
             <th scope="col">Phone number</th>
             <th scope="col">Email</th>
             <th scope="col">Note</th>
+            <th scope="col">Action</th>
 
           </tr>
         </thead>
         <tbody>
-          <tr>
+          
 
 <?php
 
@@ -43,17 +44,29 @@
 
   while($contact = $res->fetch_object()) {
 ?>
+          <tr>
             <th scope="row"><?php echo ++$i; ?></th>
             <td><?php echo $contact->name . " " . $contact->surname; ?></td>
             <td><?php echo $contact->number; ?></td>
             <td><?php echo $contact->email; ?></td>
             <td><?php echo $contact->note; ?></td>
+            <td><button type="button" class="btn btn-primary">Edit</button></td>
+          </tr>
 
 <?php
 
   }
 
 ?>
+          <tr>
+            <form >
+              <th scope="row"><?php echo ++$i; ?></th>
+              <td><input type="text" id="name" name="name" value="John" required><input type="text" id="surname" name="surname" value="Smith" required></td>
+              <td><input type="text" id="number" name="number" value=""></td>
+              <td><input type="email" id="email" name="email" required></td>
+              <td><input type="text" id="note" name="note" value=""></td>
+              <td><input type="submit" class="btn btn-primary" value="Save"></td>
+            </form>
 
           </tr>
         </tbody>
