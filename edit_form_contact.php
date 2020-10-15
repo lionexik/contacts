@@ -49,9 +49,9 @@ echo $mysqli->error;
     <form action="/components/edit_contact.php?id=<?php echo $contact->id; ?>" method="post">
     	<input type="text" name="name" id="name" placeholder="First Name" value="<?php echo htmlspecialchars($contact->name, ENT_QUOTES); ?>">
     	<input type="text" name="surname" id="surname" placeholder="Surame" value="<?php echo htmlspecialchars($contact->surname, ENT_QUOTES); ?>">
-    	<input type="text" name="number" id="number" placeholder="Phone number" value="<?php echo htmlspecialchars($contact->number, ENT_QUOTES); ?>">
-    	<input type="text" name="email" id="email" placeholder="Email" value="<?php echo htmlspecialchars($contact->email, ENT_QUOTES); ?>">
-    	<input type="text" name="note" id="note" placeholder="Note" value="<?php echo htmlspecialchars($contact->note, ENT_QUOTES); ?>">
+    	<input type="tel" name="number" id="number" placeholder="Phone number" value="<?php echo htmlspecialchars($contact->number, ENT_QUOTES); ?>">
+    	<input type="email" name="email" id="email" placeholder="Email" value="<?php echo htmlspecialchars($contact->email, ENT_QUOTES); ?>">
+    	<textarea" name="note" id="note" placeholder="Note"><?php echo htmlspecialchars($contact->note, ENT_QUOTES); ?></textarea">
     	<input type="submit" class="btn btn-primary" value="Save">
     </form>
 

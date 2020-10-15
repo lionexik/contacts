@@ -4,14 +4,14 @@ include '../database.php';
 
 $contact_id = $_GET['id'];
 
-$name = $_POST['name'];
-$surname = $_POST['surname'];
-$number = $_POST['number'];
-$email = $_POST['email'];
-$note = $_POST['note'];
+$name = trim($_POST['name']);
+$surname = trim($_POST['surname']);
+$number = trim($_POST['number']);
+$email = trim($_POST['email']);
+$note = trim($_POST['note']);
 
 
-if(isset($contact_id) && isset($name) && isset($surname) && isset($email)) {
+if(is_numeric($contact_id) && !empty($name) && !empty($surname)) {
 
 	$stmt = $mysqli->prepare("UPDATE Contact SET name = ?, surname = ?, `number` = ?, email = ?, note = ? WHERE id = ?");
 

@@ -62,9 +62,9 @@
             <form action="/components/new_contact.php" method="post">
               <th scope="row"><?php echo ++$i; ?></th>
               <td><input type="text" id="name" name="name" placeholder="First Name" required><input type="text" id="surname" name="surname" placeholder="Surname" required></td>
-              <td><input type="text" id="number" name="number" placeholder="Phone number"></td>
-              <td><input type="email" id="email" name="email" placeholder="Email" required></td>
-              <td><input type="text" id="note" name="note" placeholder="Note"></td>
+              <td><input type="tel" id="number" name="number" placeholder="Phone number"></td>
+              <td><input type="email" id="email" name="email" placeholder="Email"></td>
+              <td><textarea id="note" name="note" placeholder="Note"></textarea></td>
               <td><input type="submit" class="btn btn-primary" value="Save"></td>
             </form>
 

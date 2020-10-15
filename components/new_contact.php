@@ -2,13 +2,13 @@
 
 include '../database.php';
 
-$name = $_POST['name'];
-$surname = $_POST['surname'];
-$number = $_POST['number'];
-$email = $_POST['email'];
-$note = $_POST['note'];
+$name = trim($_POST['name']);
+$surname = trim($_POST['surname']);
+$number = trim($_POST['number']);
+$email = trim($_POST['email']);
+$note = trim($_POST['note']);
 
-if(isset($name) && isset($surname) && isset($email)) {
+if(!empty($name) && !empty($surname)) {
 
 	$uri = preg_replace('/\s+/', '-', $name . " " . $surname);
 
