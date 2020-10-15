@@ -4,9 +4,18 @@ include 'database.php';
 
 $uri = $_GET['uri'];
 
-$sql = "SELECT * FROM Contact WHERE url = $uri";
+$stmt = $mysqli->prepare("SELECT * FROM Contact WHERE `url` = ?");
 
-$res = $mysqli->query($sql);
+$stmt->bind_param("s", $uri);
+
+$stmt->execute();
+$res = $stmt->get_result();
+
+$stmt->close();
+
+
+
+echo $mysqli->error;
 
 
 
@@ -28,7 +37,7 @@ $res = $mysqli->query($sql);
 
 <?php
 
-	if(!$res) {
+	if($res->num_rows < 1) {
 		echo "Cant find " . $uri;
 	} else {
 		$contact = $res->fetch_object();
@@ -43,7 +52,7 @@ $res = $mysqli->query($sql);
     	<input type="text" name="number" id="number" value="<?php echo $contact->number; ?>">
     	<input type="text" name="email" id="email" value="<?php echo $contact->email; ?>">
     	<input type="text" name="note" id="note" value="<?php echo $contact->note; ?>">
-    	<input type="submit" value="Save">
+    	<input type="submit" class="btn btn-primary" value="Save">
     </form>
 
 <?php
