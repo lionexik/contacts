@@ -8,10 +8,53 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>My contacts</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Contacts</h1>
+
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Email</th>
+            <th scope="col">Note</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+<?php
+
+  $sql = "SELECT * FROM Contacts";
+  $res = $mysqli->query($sql);
+  $i = 0;
+
+  while($contact = $res->fetch_object()) {
+?>
+            <th scope="row"><?php echo ++$i; ?></th>
+            <td><?php echo $contact->name . " " . $contact->surname; ?></td>
+            <td><?php echo $contact->number; ?></td>
+            <td><?php echo $contact->email; ?></td>
+            <td><?php echo $contact->note; ?></td>
+
+<?php
+
+  }
+
+?>
+
+          </tr>
+        </tbody>
+      </table>
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
