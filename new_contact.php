@@ -10,11 +10,9 @@ $note = $_POST['note'];
 
 if(isset($name) && isset($surname) && isset($email)) {
 
-	$uri = preg_replace('/\s+/', '-', $name . " " . $surname);
+	$stmt = $mysqli->prepare("INSERT INTO Contact (`name`, `surname`, `number`, `email`, `note`) VALUES (?, ?, ?, ?, ?)");
 
-	$stmt = $mysqli->prepare("INSERT INTO Contact (`name`, `surname`, `number`, `email`, `note`, `url`) VALUES (?, ?, ?, ?, ?, ?)");
-
-	$stmt->bind_param("ssssss", $name, $surname, $number, $email, $note, $uri);
+	$stmt->bind_param("sssss", $name, $surname, $number, $email, $note);
 
 	$stmt->execute();
 

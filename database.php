@@ -8,7 +8,6 @@
   * Funkce pro spojeni s databazi
   * @return spojeni s datbazi
   */
-  function connect() {
 
       $servername = "servername";
       $dbusername = "username";
@@ -22,8 +21,6 @@
           die("Cannt connect to database: " . $conn->connect_error);
       }
 
-      return $conn;
-  }
 
   /**
   * Funkce pro odpojeni od databaze

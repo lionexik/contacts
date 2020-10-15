@@ -50,7 +50,7 @@
             <td><?php echo $contact->number; ?></td>
             <td><?php echo $contact->email; ?></td>
             <td><?php echo $contact->note; ?></td>
-            <td><a href="/<?php echo $contact->name . '-' . $contact->surname;?>" class="btn btn-primary">Edit</a></td>
+            <td><a href="/<?php echo $contact->url; ?>" class="btn btn-primary">Edit</a></td>
           </tr>
 
 <?php
@@ -59,7 +59,7 @@
 
 ?>
           <tr>
-            <form action="/new_contact.php" method="post">
+            <form action="/components/new_contact.php" method="post">
               <th scope="row"><?php echo ++$i; ?></th>
               <td><input type="text" id="name" name="name" value="John" required><input type="text" id="surname" name="surname" value="Smith" required></td>
               <td><input type="text" id="number" name="number" value=""></td>
