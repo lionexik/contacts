@@ -1,3 +1,9 @@
+<?php 
+
+  include 'database.php';
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,7 +37,7 @@
 
 <?php
 
-  $sql = "SELECT * FROM Contacts";
+  $sql = "SELECT * FROM Contact";
   $res = $mysqli->query($sql);
   $i = 0;
 
