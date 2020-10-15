@@ -27,4 +27,4 @@ RewriteRule ^subdom/[^/]+/(.+[^/])$ /$1/ [R]
 # nice url for editing contact
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([^/]+)$ /edit_form_contact.php?id=$1 [L]
+RewriteRule ^([^/]+)$ /edit_form_contact.php?uri=$1 [L]
