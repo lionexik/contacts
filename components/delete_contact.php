@@ -1,16 +1,24 @@
 <?php
 
-include '../database.php';
+/**
+ * Remove contact from database
+ */
+
+include '../class/Contact_class.php';
+
+session_start();
 
 $contact_id = $_GET['id'];
 
 if(is_numeric($contact_id)) {
+	$contact = new ContactManager();
+	$result = $contact->delete($contact_id);
 
-	$stmt = $mysqli->prepare("DELETE FROM `Contact` WHERE `id` = ?");
-	$stmt->bind_param('i', $contact_id);
-
-	$stmt->execute();
-	$stmt->close();
+	if($result) {
+		$_SESSION["message"] = "Deleting was successful.";
+	}else{
+		$_SESSION["message"] = "Cannt delete contact.";
+	}
 
 }
 

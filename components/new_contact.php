@@ -1,6 +1,12 @@
 <?php
 
-include '../database.php';
+/**
+ * Save new contact to database
+ */
+
+include '../class/Contact_class.php';
+
+session_start();
 
 $name = trim($_POST['name']);
 $surname = trim($_POST['surname']);
@@ -12,13 +18,15 @@ if(!empty($name) && !empty($surname)) {
 
 	$uri = preg_replace('/\s+/', '-', $name . " " . $surname);
 
-	$stmt = $mysqli->prepare("INSERT INTO Contact (`name`, `surname`, `number`, `email`, `note`, `url`) VALUES (?, ?, ?, ?, ?, ?)");
+	$contact = new ContactManager();
+	$result = $contact->saveToDatabase($name, $surname, $number, $email, $note, $uri);
 
-	$stmt->bind_param("ssssss", $name, $surname, $number, $email, $note, $uri);
+	if($result) {
+		$_SESSION["message"] = "Saving was successful.";
+	}else{
+		$_SESSION["message"] = "Cannot save contact.";
+	}
 
-	$stmt->execute();
-
-	$stmt->close();
 }
 
 header("Location:/");

@@ -1,0 +1,131 @@
+<?php
+
+require_once('Database_class.php');
+
+/**
+ * Class for contacts
+ */
+class ContactManager {
+
+	private $mysqli = null;
+
+	/**
+	 * Connection to database
+	 */
+	public function __construct() {
+		$DB = new DatabaseConnection();
+		$this->$mysqli = $DB->connection;
+	}
+
+	/**
+	 * Get all contacts from database
+	 *
+	 * @return All contacts in table or False for failure
+	 */
+	public function getAllContacts() {
+		$sql = "SELECT * FROM Contact";
+  		$res = $this->$mysqli->query($sql);
+
+  		return $res;
+	}
+
+	/**
+	 * Get contact corresponding with url
+	 *
+	 * @param $uri is text in url
+	 *
+	 * @return Contact with $uri or False for failure
+	 */
+	public function getContactByUri($uri) {
+		$stmt = $this->$mysqli->prepare("SELECT * FROM Contact WHERE `url` = ?");
+
+		$stmt->bind_param("s", $uri);
+
+		$stmt->execute();
+		$res = $stmt->get_result();
+
+		$stmt->close();
+
+		return $res;
+	}
+
+	/**
+	 * Edit contact with coresponding id in database
+	 *
+	 * @param $name Name of contact
+	 *
+	 * @param $surname Surname of contact
+	 *
+	 * @param $number telephone number
+	 *
+	 * @param $email email address
+	 *
+	 * @param $note Note
+	 *
+	 * @param $uri Url of contact - for editing
+	 *
+	 * @param $id Contact's ID
+	 *
+	 * @return False for failure
+	 */
+	public function edit($name, $surname, $number, $email, $note, $uri, $id) {
+
+		$stmt = $this->$mysqli->prepare("UPDATE Contact SET `name` = ?, `surname` = ?, `number` = ?, `email` = ?, `note` = ?, `url` = ? WHERE `id` = ?");
+
+		$stmt->bind_param("ssssssi", $name, $surname, $number, $email, $note, $uri, $id);
+
+		$result = $stmt->execute();
+
+		$stmt->close();
+
+		return $result;
+	}
+
+	/**
+	 * Save new contact to database
+	 *
+	 * @param $name Name of contact
+	 *
+	 * @param $surname Surname of contact
+	 *
+	 * @param $number telephone number
+	 *
+	 * @param $email email address
+	 *
+	 * @param $note Note
+	 *
+	 * @param $uri Url of contact - for editing
+	 *
+	 * @return False for failure
+	 */
+	public function saveToDatabase($name, $surname, $number, $email, $note, $uri) {
+		$stmt = $this->$mysqli->prepare("INSERT INTO Contact (`name`, `surname`, `number`, `email`, `note`, `url`) VALUES (?, ?, ?, ?, ?, ?)");
+
+		$stmt->bind_param("ssssss", $name, $surname, $number, $email, $note, $uri);
+	
+		$result = $stmt->execute();
+
+		$stmt->close();
+
+		return $result;
+
+	}
+
+	/**
+	 * Remove contact with $id from table 
+	 *
+	 * @param $id of contact which you want to remove
+	 *
+	 * @return False for failure
+	 */
+	public function delete($id) {
+		$stmt = $this->$mysqli->prepare("DELETE FROM Contact WHERE `id` = ?");
+		$stmt->bind_param('i', $id);
+
+		$result = $stmt->execute();
+
+		$stmt->close();
+
+		return $result;
+	}
+}
